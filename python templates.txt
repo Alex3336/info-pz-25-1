@@ -1,0 +1,19 @@
+name = "Олександр"
+surname = "Шарандак"
+group = "ПЗ-25-1"
+
+author = f"{name} {surname} \t {group} \n"
+print(author)
+
+
+conclusion = (
+    "Практичну роботу №"
+    + "\n"
+    + "виконав(ла) студент(ка) "
+    + group
+    + "\n"
+    + surname
+    + " "
+    + name
+)
+print(conclusion)
