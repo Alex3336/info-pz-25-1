@@ -41,7 +41,9 @@ def power_check(base, exponent):
 
 def tan_check(angle):
     if abs(cos(angle)) < 1e-10:
-        raise ValueError("Помилка: тангенс не визначений (косинус кута близький до нуля)")
+        raise ValueError(
+            "Помилка: тангенс не визначений (косинус кута близький до нуля)"
+        )
     return tan(angle)
 
 
@@ -52,9 +54,13 @@ v = input_check("Вкажіть значення:\nv = ")
 
 
 def calculate_result_1(g, h):
-    base = h / sqrt(7) + division_check(sqrt(5), g + h, "Ділення на нуль: сума g + h дорівнює нулю")
+    base = h / sqrt(7) + division_check(
+        sqrt(5), g + h, "Ділення на нуль: сума g + h дорівнює нулю"
+    )
 
-    exponent = division_check(2 * g, 3 * h + 5, "Ділення на нуль: знаменник (3*h + 5) дорівнює нулю")
+    exponent = division_check(
+        2 * g, 3 * h + 5, "Ділення на нуль: знаменник (3*h + 5) дорівнює нулю"
+    )
 
     minuend = power_check(base, exponent)
 
@@ -63,7 +69,9 @@ def calculate_result_1(g, h):
     numerator = sqrt_check(sqrt(3) + abs(g + h) + g * h)
 
     subtrahend = division_check(
-        numerator, denominator, "Ділення на нуль: знаменник другого дробу в Result_1 дорівнює нулю"
+        numerator,
+        denominator,
+        "Ділення на нуль: знаменник другого дробу в Result_1 дорівнює нулю",
     )
 
     return minuend - subtrahend
@@ -77,7 +85,9 @@ def calculate_result_2(u, v):
     denominator = sqrt_check(radicand)
 
     return division_check(
-        numerator, denominator, "Ділення на нуль: знаменник другого виразу (Result_2) дорівнює нулю"
+        numerator,
+        denominator,
+        "Ділення на нуль: знаменник другого виразу (Result_2) дорівнює нулю",
     )
 
 
@@ -92,12 +102,16 @@ def calculate_result_3(u, v):
 
     minuend = cos(cos_minuend - cos_subtrahend) ** 2
 
-    numerator = cos(sqrt(3) * pi - u**2 + v**2)
+    numerator = cos(sqrt(3) * pi - u**2 + v**2) ** 2
 
     denominator = 2 * sqrt(3) - 3 * v
 
     subtrahend = sqrt_check(
-        division_check(numerator, denominator, "Ділення на нуль: знаменник другого дробу в Result_3 дорівнює нулю")
+        division_check(
+            numerator,
+            denominator,
+            "Ділення на нуль: знаменник другого дробу в Result_3 дорівнює нулю",
+        )
     )
 
     return minuend - subtrahend
@@ -109,7 +123,9 @@ def calculate_result_4(g, h):
     denominator = sqrt_check(power_check(h, 2 * g) + 5 * g * h)
 
     minuend = division_check(
-        numerator, denominator, "Ділення на нуль: знаменник першого дробу в Result_4 дорівнює нулю"
+        numerator,
+        denominator,
+        "Ділення на нуль: знаменник першого дробу в Result_4 дорівнює нулю",
     )
 
     return minuend - power_check(g, h) * tan_check(pi / sqrt(5) + g**2 * h**2) ** 2
@@ -121,7 +137,11 @@ def calculate_result_5(g, h, u, v):
             3 * pi
             - sqrt(
                 abs(
-                    division_check(g * u, 2 * v, "Ділення на нуль: знаменник 2*v у першому дробі Result_5")
+                    division_check(
+                        g * u,
+                        2 * v,
+                        "Ділення на нуль: знаменник 2*v у першому дробі Result_5",
+                    )
                 )
             )
         )
@@ -130,19 +150,28 @@ def calculate_result_5(g, h, u, v):
 
     augend_denominator = (
         cos(
-            5**g - division_check(pi, 2 * u * v, "Ділення на нуль: знаменник 2*u*v у другому дробі Result_5")
+            5**g
+            - division_check(
+                pi,
+                2 * u * v,
+                "Ділення на нуль: знаменник 2*u*v у другому дробі Result_5",
+            )
         )
         ** 3
     )
 
     augend = division_check(
-        augend_numerator, augend_denominator, "Ділення на нуль: знаменник третього дробу в Result_5 дорівнює нулю"
+        augend_numerator,
+        augend_denominator,
+        "Ділення на нуль: знаменник третього дробу в Result_5 дорівнює нулю",
     )
 
     addend_numerator = (
         cos(
             sqrt_check(
-                division_check(g, h, "Ділення на нуль: h дорівнює нулю в четвертому дробі Result_5")
+                division_check(
+                    g, h, "Ділення на нуль: h дорівнює нулю в четвертому дробі Result_5"
+                )
                 - sqrt(5) * pi / 3
             )
         )
@@ -151,11 +180,17 @@ def calculate_result_5(g, h, u, v):
 
     addend_denominator = sin(
         3 * pi / sqrt(5)
-        - sqrt_check(division_check(u, v, "Ділення на нуль: v дорівнює нулю в п'ятому дробі Result_5"))
+        - sqrt_check(
+            division_check(
+                u, v, "Ділення на нуль: v дорівнює нулю в п'ятому дробі Result_5"
+            )
+        )
     )
 
     addend = division_check(
-        addend_numerator, addend_denominator, "Ділення на нуль: знаменник шостого дробу в Result_5 дорівнює нулю"
+        addend_numerator,
+        addend_denominator,
+        "Ділення на нуль: знаменник шостого дробу в Result_5 дорівнює нулю",
     )
 
     return augend + addend
