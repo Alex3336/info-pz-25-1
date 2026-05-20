@@ -1,5 +1,5 @@
 import datetime
-from math import sqrt
+from math import *
 
 
 def division_check(numerator, denominator, message):
