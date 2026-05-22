@@ -1,5 +1,3 @@
-from math import sqrt, sin, cos, tan, pi
-
 name = "Олександр"
 surname = "Шарандак"
 group = "ПЗ-25-1"
@@ -34,22 +32,32 @@ f = input_check("Вкажіть значення:\nf = ")
 k = input_check("Вкажіть значення:\nk = ")
 h = input_check("Вкажіть значення:\nh = ")
 
+if s == 0:
+    while k == f:
+        print("k не може дорівнювати f. Будь ласка, введіть інше значення для k та f.")
+        k = input_check("Вкажіть значення:\nk = ")
+        f = input_check("Вкажіть значення:\nf = ")
+elif s != 0:
+    while h < 0:
+        print("Помилка: значення h не може бути від'ємним для обчислення кореня. Будь ласка, введіть невід'ємне число.")
+        h = input_check("Вкажіть значення:\nh = ")
+
+print(f"\ns = {s}\nf = {f}\nk = {k}\nh = {h}")
+
 
 def g_calculate(f, k, s, h):
     if s == 0:
         numerator = f - k
         denominator = f + k
-        return division_check(numerator, denominator, "Ділення на нуль")
-    elif s != 0:
-        radicand = (2 * h,)
-        return f - sqrt_check(radicand, 3)
+        return division_check(numerator, denominator, "Ділення на нуль"), "s = 0"
     else:
-        return error(Exception, "невідоме число s")
+        return f - sqrt_check(2 * h, 3), "s != 0"
 
 
 try:
     result = g_calculate(f, k, s, h)
-    print(f"Result = {result}")
+    print(result[1])
+    print(f"g({f}, {k}, {s}, {h}) = {result[0]}")
 
 except ZeroDivisionError as error:
     print(error)
