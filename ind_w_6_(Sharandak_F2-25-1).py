@@ -1,16 +1,7 @@
-def input_check(text):
-    while True:
-        try:
-            value = float(input(text))
-            return value
-        except ValueError:
-            print("Помилка: введіть число!\n")
-
-
-def division_check(numerator, denominator, message):
-    if abs(denominator) < 1e-10:
-        raise ZeroDivisionError(message)
-    return numerator / denominator
+from _math_functions_check import (
+    input_check,
+    division_check,
+)
 
 
 x = input_check("Вкажіть значення:\nx = ")

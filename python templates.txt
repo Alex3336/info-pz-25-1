@@ -17,3 +17,12 @@ conclusion = (
     + name
 )
 print(conclusion)
+
+author = Label(
+    root,
+    text="\u00a9 Шарандак О.В, ПЗ-25-1",
+    bg=BG_COLOR,
+    font=(font_family, 8, "italic"),
+    fg="#888888",
+)
+author.pack(side=BOTTOM, padx=10, pady=10)

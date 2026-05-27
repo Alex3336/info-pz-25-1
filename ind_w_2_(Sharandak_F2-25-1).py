@@ -1,4 +1,11 @@
 from math import sqrt, sin, cos, tan, pi
+from _math_functions_check import (
+    input_check,
+    division_check,
+    sqrt_check,
+    power_check,
+    tan_check,
+)
 
 name = "Олександр"
 surname = "Шарандак"
@@ -8,43 +15,6 @@ author = f"{name} {surname} \t {group} \n"
 print(author)
 
 
-def input_check(text):
-    while True:
-        try:
-            value = float(input(text))
-            return value
-        except ValueError:
-            print("Помилка: введіть число!\n")
-
-
-def division_check(numerator, denominator, message):
-    if abs(denominator) < 1e-10:
-        raise ZeroDivisionError(message)
-    return numerator / denominator
-
-
-def sqrt_check(radicand):
-    if radicand < 0:
-        raise ValueError(f"Помилка обчислення кореня: від'ємний аргумент ({radicand})")
-    return sqrt(radicand)
-
-
-def power_check(base, exponent):
-    if base == 0 and exponent < 0:
-        raise ZeroDivisionError(
-            "Помилка степеня: нуль не можна підносити до від'ємного степеня"
-        )
-    if base < 0 and not float(exponent).is_integer():
-        raise ValueError("Помилка степеня: від'ємне число у дробовому степені")
-    return base**exponent
-
-
-def tan_check(angle):
-    if abs(cos(angle)) < 1e-10:
-        raise ValueError(
-            "Помилка: тангенс не визначений (косинус кута близький до нуля)"
-        )
-    return tan(angle)
 
 
 g = input_check("Вкажіть значення:\ng = ")
@@ -66,7 +36,7 @@ def calculate_result_1(g, h):
 
     denominator = g**2 - 4 * h + (g - h) ** 2
 
-    numerator = sqrt_check(sqrt(3) + abs(g + h) + g * h)
+    numerator = sqrt_check(sqrt(3) + abs(g + h) + (g * h)**2)
 
     subtrahend = division_check(
         numerator,
