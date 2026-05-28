@@ -1,5 +1,4 @@
 from _math_functions_check import (
-    input_check,
     division_check,
     sqrt_check,
     power_check,

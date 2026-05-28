@@ -15,8 +15,6 @@ author = f"{name} {surname} \t {group} \n"
 print(author)
 
 
-
-
 g = input_check("Вкажіть значення:\ng = ")
 h = input_check("Вкажіть значення:\nh = ")
 u = input_check("Вкажіть значення:\nu = ")
@@ -36,7 +34,7 @@ def calculate_result_1(g, h):
 
     denominator = g**2 - 4 * h + (g - h) ** 2
 
-    numerator = sqrt_check(sqrt(3) + abs(g + h) + (g * h)**2)
+    numerator = sqrt_check(sqrt(3) + abs(g + h) + (g * h) ** 2)
 
     subtrahend = division_check(
         numerator,
