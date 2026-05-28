@@ -336,12 +336,7 @@ def calculate_all(event=None):
             min_result.config(text="Min = Неможливо обчислити", fg=ERROR_COLOR)
 
     except ValueError:
-        messagebox.showerror(
-            "Помилка вводу",
-            "Будь ласка, введіть числові значення у всі поля (g, h, u, v).",
-        )
-    except ValueError as error:
-        messagebox.showerror("Помилка значення", str(error))
+        messagebox.showerror("Помилка вводу", "Будь ласка, введіть числові значення у всі поля (g, h, u, v).")
     except OverflowError:
         messagebox.showerror("Помилка", "Помилка переповнення числа!")
     except Exception as error:

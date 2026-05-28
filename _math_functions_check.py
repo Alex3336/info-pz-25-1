@@ -9,19 +9,19 @@ def input_check(text):
             print("Помилка: введіть число!\n")
 
 
-def division_check(numerator, denominator):
+def division_check(numerator:float | int, denominator:float | int):
     if abs(denominator) < 1e-10:
         raise ZeroDivisionError(f"Помилка ділення: ділення на нуль ({round(denominator,3)})")
     return numerator / denominator
 
 
-def sqrt_check(radicand):
+def sqrt_check(radicand:float | int):
     if radicand < 0:
         raise ValueError(f"Помилка обчислення кореня: від'ємний аргумент ({round(radicand,3)})")
     return sqrt(radicand)
 
 
-def power_check(base, exponent):
+def power_check(base:float | int, exponent:float | int):
     if base == 0 and exponent < 0:
         raise ZeroDivisionError(
             f"Помилка степеня: нуль не можна підносити до від'ємного степеня{round(exponent,3)}"
