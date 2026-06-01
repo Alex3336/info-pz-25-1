@@ -1,4 +1,5 @@
-from math import sqrt, cos, tan
+from math import sqrt, cos, tan, log
+
 
 def input_check(text):
     while True:
@@ -9,25 +10,31 @@ def input_check(text):
             print("Помилка: введіть число!\n")
 
 
-def division_check(numerator:float | int, denominator:float | int):
+def division_check(numerator: float | int, denominator: float | int):
     if abs(denominator) < 1e-10:
-        raise ZeroDivisionError(f"Помилка ділення: ділення на нуль ({round(denominator,3)})")
+        raise ZeroDivisionError(
+            f"Помилка ділення: ділення на нуль ({round(denominator,3)})"
+        )
     return numerator / denominator
 
 
-def sqrt_check(radicand:float | int):
+def sqrt_check(radicand: float | int):
     if radicand < 0:
-        raise ValueError(f"Помилка обчислення кореня: від'ємний аргумент ({round(radicand,3)})")
+        raise ValueError(
+            f"Помилка обчислення кореня: від'ємний аргумент ({round(radicand,3)})"
+        )
     return sqrt(radicand)
 
 
-def power_check(base:float | int, exponent:float | int):
+def power_check(base: float | int, exponent: float | int):
     if base == 0 and exponent < 0:
         raise ZeroDivisionError(
             f"Помилка степеня: нуль не можна підносити до від'ємного степеня{round(exponent,3)}"
         )
     if base < 0 and not float(exponent).is_integer():
-        raise ValueError(f"Помилка степеня: від'ємне число у дробовому степені {round(exponent,3)}")
+        raise ValueError(
+            f"Помилка степеня: від'ємне число у дробовому степені {round(exponent,3)}"
+        )
     return base**exponent
 
 
@@ -37,3 +44,17 @@ def tan_check(angle):
             "Помилка: тангенс не визначений (косинус кута близький до нуля)"
         )
     return tan(angle)
+
+
+def cot_check(angle):
+    if abs(tan_check(angle)) < 1e-10:
+        raise ValueError(
+            "Помилка: котангенс не визначений (синус кута близький до нуля)"
+        )
+    return 1/tan_check(angle)
+
+
+def log_check(base: float | int, argument: float | int):
+    if base <= 0 or argument <= 0:
+        raise ValueError(f"Логарифм не існує для від'ємних аргументів, або основ")
+    return log(argument, base)
