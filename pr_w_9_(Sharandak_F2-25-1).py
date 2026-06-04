@@ -70,61 +70,6 @@ def center_window(window, width, height):
     window.geometry(f"{width}x{height}+{x}+{y}")
 
 
-def load_svg_image(path):
-    if not os.path.exists(path):
-        return None
-
-    try:
-        root.tk.call("package", "require", "tksvg")
-        return PhotoImage(file=path)
-    except TclError:
-        return None
-
-
-def draw_people_fallback(canvas):
-    canvas.create_oval(38, 16, 70, 48, fill=TEXT_COLOR, outline=ACCENT_COLOR)
-    canvas.create_oval(22, 50, 88, 94, fill=ACCENT_COLOR, outline=TEXT_COLOR)
-    canvas.create_oval(76, 18, 108, 50, fill=TEXT_COLOR, outline=ACCENT_COLOR)
-    canvas.create_oval(72, 53, 124, 95, fill=ERROR_COLOR, outline=TEXT_COLOR)
-
-
-def draw_calendar_fallback(canvas):
-    canvas.create_rectangle(25, 15, 130, 32, fill=ERROR_COLOR, outline=TEXT_COLOR)
-    canvas.create_polygon(
-        27,
-        32,
-        130,
-        32,
-        116,
-        92,
-        15,
-        78,
-        fill=TEXT_COLOR,
-        outline=ACCENT_COLOR,
-    )
-    canvas.create_text(78, 23, text="Calendar", fill=TEXT_COLOR, font=(font_family, 7, "bold"))
-
-    for x in range(40, 116, 18):
-        canvas.create_line(x, 42, x - 12, 82, fill=BG_COLOR)
-
-    for y in range(45, 76, 12):
-        canvas.create_line(25, y, 120, y + 12, fill=BG_COLOR)
-
-
-def add_icon(parent, svg_filename, row, column, padx, fallback_draw):
-    image = load_svg_image(os.path.join("img", svg_filename))
-
-    if image:
-        label = Label(parent, image=image, bg=BG_COLOR)
-        label.image = image
-        label.grid(row=row, column=column, rowspan=3, padx=padx, pady=8)
-        return
-
-    canvas = Canvas(parent, width=145, height=95, bg=BG_COLOR, highlightthickness=0)
-    canvas.grid(row=row, column=column, rowspan=3, padx=padx, pady=8)
-    fallback_draw(canvas)
-
-
 def calculate_age(birthday):
     today = date.today()
     age = today.year - birthday.year
@@ -331,8 +276,6 @@ patronymic_entry.bind("<Return>", lambda event: finish_name_input())
 patronymic_entry.bind("<KP_Enter>", lambda event: finish_name_input())
 patronymic_entry.bind("<Tab>", lambda event: finish_name_input())
 
-add_icon(person_frame, "people.svg", 0, 2, (35, 5), draw_people_fallback)
-
 date_frame = LabelFrame(
     root,
     text="Вкажіть день, місяць, рік народження:",
@@ -371,8 +314,6 @@ month_combo.bind("<<ComboboxSelected>>", update_day_combo)
 year_combo.bind("<<ComboboxSelected>>", update_day_combo)
 
 reset_date_combos()
-
-add_icon(date_frame, "calendar.svg", 0, 2, (60, 5), draw_calendar_fallback)
 
 process_button = Button(
     root,
