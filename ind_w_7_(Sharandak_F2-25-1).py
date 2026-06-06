@@ -60,7 +60,7 @@ center_x = int(screen_width / 2 - window_width / 2)
 center_y = int(screen_height / 2 - window_height / 2)
 
 root.title("Виконання розрахунків")
-root.iconbitmap(default="img/logo.ico")
+root.iconbitmap(default="img/logo_1.ico")
 root.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 root.resizable(False, False)
 root.configure(bg=BG_COLOR)

@@ -44,7 +44,7 @@ FONT_MAIN = (font_family, 10)
 FONT_BOLD = (font_family, 10, "bold")
 
 root.title("Значення тригонометричних функцій")
-root.iconbitmap(default="img/logo.ico")
+root.iconbitmap(default="img/logo_1.ico")
 root.geometry("480x250+500+100")
 root.resizable(False, False)
 root.configure(bg=BG_COLOR)
