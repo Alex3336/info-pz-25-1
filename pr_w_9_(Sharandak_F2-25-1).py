@@ -380,7 +380,7 @@ result_age.grid(row=1, column=1, padx=5, sticky=W)
 
 author = Label(
     root,
-    text="© Шарандак О.В., ПЗ-25-1",
+    text="\u00a9 Шарандак О.В., ПЗ-25-1",
     bg=BG_COLOR,
     fg=ACCENT_COLOR,
     font=(font_family, 8, "italic"),
