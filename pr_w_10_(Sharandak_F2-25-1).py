@@ -5,6 +5,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import urllib.request
 import openpyxl
+from openpyxl.styles import Alignment
 import ctypes
 import os
 
@@ -196,17 +197,23 @@ def process_data():
     try:
         if os.path.exists(filename):
             workbook = openpyxl.load_workbook(filename)
-            sheet = workbook.active
+            students_sheet = workbook.active
         else:
             workbook = openpyxl.Workbook()
-            sheet = workbook.active
-            sheet.append(list(record.keys()))
-            for i, _ in enumerate(record.keys(), 1):
-                column_letter = openpyxl.utils.get_column_letter(i)
-                sheet.column_dimensions[column_letter].width = 20
+            students_sheet = workbook.active
+            students_sheet.append(list(record.keys()))
 
-        # Додаємо дані
-        sheet.append(list(record.values()))
+        students_sheet.append(list(record.values()))
+
+        for col in students_sheet.columns:
+            max_length = 0
+            column_letter = col[0].column_letter
+            for cell in col:
+                cell.alignment = Alignment(horizontal='left')
+                if cell.value:
+                    max_length = max(max_length, len(str(cell.value)))
+            students_sheet.column_dimensions[column_letter].width = max_length + 2
+
         workbook.save(filename)
 
         messagebox.showinfo(
